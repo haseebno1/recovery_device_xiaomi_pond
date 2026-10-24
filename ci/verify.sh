@@ -60,5 +60,5 @@ done
 echo "Verified vermagic for ${#MODULES[@]} kernel modules"
 
 image_size="$(stat -c '%s' "$IMAGE")"
-((image_size < PARTITION_MAX)) || { echo "vendor_boot.img is $image_size bytes; partition limit is $PARTITION_MAX" >&2; exit 1; }
-echo "OK: vendor_boot.img is $image_size bytes and all recovery, DTB, and module checks passed"
+((image_size <= PARTITION_MAX)) || { echo "vendor_boot.img is $image_size bytes; partition limit is $PARTITION_MAX" >&2; exit 1; }
+echo "OK: vendor_boot.img is $image_size bytes (limit: $PARTITION_MAX) and all recovery, DTB, and module checks passed"
